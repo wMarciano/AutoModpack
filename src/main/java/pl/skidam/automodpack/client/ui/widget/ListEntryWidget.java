@@ -112,7 +112,7 @@ public class ListEntryWidget extends AlwaysSelectedEntryListWidget<ListEntry> {
         }
     }
 
-    @Override
+    //@Override
     protected int getScrollbarPositionX() {
         return this.width - 6;
     }

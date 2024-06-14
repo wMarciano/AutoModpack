@@ -85,6 +85,7 @@ public class WildCards {
 
     private void matchFile(Path path, String formattedPath, String finalWildcard, boolean startsWithSlash, boolean blackListed) {
         String matchFileStr = startsWithSlash ? "/" + path.toString().replace(File.separator, "/") : path.toString().replace(File.separator, "/");
+        finalWildcard = finalWildcard.replace("\\", "/");       // so tests dont fail on windows
         if (fileMatches(matchFileStr, finalWildcard)) {
             if (blackListed) {
                 wildcardMatches.remove(formattedPath, path);
@@ -128,6 +129,7 @@ public class WildCards {
         return false;
     }
     public Map<String, Path> getWildcardMatches() {
+        System.out.println(wildcardMatches);
         return wildcardMatches;
     }
 

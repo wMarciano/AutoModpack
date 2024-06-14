@@ -20,7 +20,7 @@ public enum LoginNetworkingIDs {
     }
 
     public static Identifier getIdentifier(LoginNetworkingIDs ID) {
-        return new Identifier(MOD_ID, ID.toString().toLowerCase());
+        return Identifier.of(MOD_ID, ID.toString().toLowerCase());
     }
 
     public static Integer getByKey(Identifier key) {

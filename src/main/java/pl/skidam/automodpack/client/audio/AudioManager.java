@@ -32,7 +32,7 @@ public class AudioManager {
     private static SoundManager soundManager;
     private static boolean playing = false;
 
-    private static final Identifier WAITING_MUSIC_ID = new Identifier(MOD_ID, "waiting_music");
+    private static final Identifier WAITING_MUSIC_ID = Identifier.of(MOD_ID, "waiting_music");
 
 //#if MC >= 1193
    public static final SoundEvent WAITING_MUSIC_EVENT = SoundEvent.of(WAITING_MUSIC_ID);
@@ -66,7 +66,7 @@ public class AudioManager {
 //#endif
 
     private SoundEvent register() {
-        Identifier id = new Identifier(MOD_ID, "waiting_music");
+        Identifier id = Identifier.of(MOD_ID, "waiting_music");
 //#if MC >= 1193
    Registry<SoundEvent> register = Registries.SOUND_EVENT;
 //#else

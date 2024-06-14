@@ -1,3 +1,4 @@
+## FORKED FOR FABRIC-1.21 COMPAT + UNMODDED CLIENT NAG... BREAKS OLDER VERSIONS...
 <p align="center"><img src="https://i.imgur.com/zogBcIG.png" alt="Logo" width="200"></p>
 <h1 align="center">AutoModpack  <br>
     <a href="https://www.curseforge.com/minecraft/mc-mods/automodpack"><img src="http://cf.way2muchnoise.eu/639211.svg" alt="CF"></a>

@@ -18,8 +18,8 @@ import static pl.skidam.automodpack_core.GlobalVariables.MOD_ID;
 
 public class DownloadScreen extends VersionedScreen {
 
-    private static final Identifier PROGRESS_BAR_EMPTY_TEXTURE = new Identifier(MOD_ID, "gui/progress-bar-empty.png");
-    private static final Identifier PROGRESS_BAR_FULL_TEXTURE = new Identifier(MOD_ID, "gui/progress-bar-full.png");
+    private static final Identifier PROGRESS_BAR_EMPTY_TEXTURE = Identifier.of(MOD_ID, "gui/progress-bar-empty.png");
+    private static final Identifier PROGRESS_BAR_FULL_TEXTURE = Identifier.of(MOD_ID, "gui/progress-bar-full.png");
     private static final int PROGRESS_BAR_WIDTH = 250;
     private static final int PROGRESS_BAR_HEIGHT = 20;
     private final DownloadManager downloadManager;

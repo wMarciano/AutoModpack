@@ -7,8 +7,8 @@ import pl.skidam.automodpack.client.ui.versioned.VersionedScreen;
 import static pl.skidam.automodpack_core.GlobalVariables.MOD_ID;
 
 public class Badge {
-    private static final Identifier MODRINTH_ICON = new Identifier(MOD_ID, "gui/platform/logo-modrinth.png");
-    private static final Identifier CURSEFORGE_ICON = new Identifier(MOD_ID, "gui/platform/logo-curseforge.png");
+    private static final Identifier MODRINTH_ICON = Identifier.of(MOD_ID, "gui/platform/logo-modrinth.png");
+    private static final Identifier CURSEFORGE_ICON = Identifier.of(MOD_ID, "gui/platform/logo-curseforge.png");
     private static final int textureSize = 32;
 
     public static void renderModrinthBadge(VersionedMatrices matrices, int x, int y) {

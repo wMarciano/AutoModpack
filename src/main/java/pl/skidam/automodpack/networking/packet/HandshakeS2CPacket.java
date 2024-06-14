@@ -15,9 +15,9 @@ import pl.skidam.automodpack.networking.content.HandshakePacket;
 import pl.skidam.automodpack.networking.PacketSender;
 import pl.skidam.automodpack.networking.server.ServerLoginNetworking;
 import pl.skidam.automodpack_loader_core.loader.LoaderManager;
-import pl.skidam.automodpack_core.netty.HttpServer;
 import pl.skidam.automodpack_core.modpack.Modpack;
 import pl.skidam.automodpack_core.utils.Ip;
+import java.util.concurrent.TimeUnit;
 
 import static pl.skidam.automodpack.networking.ModPackets.DATA;
 import static pl.skidam.automodpack_core.GlobalVariables.*;
@@ -36,6 +36,16 @@ public class HandshakeS2CPacket {
                 Text reason = VersionedText.literal("AutoModpack mod for " + new LoaderManager().getPlatformType().toString().toLowerCase() + " modloader is required to play on this server!");
                 connection.send(new LoginDisconnectS2CPacket(reason));
                 connection.disconnect(reason);
+            } else if (serverConfig.nagUnmoddedClients) {
+                // use a delay so player can log in.
+                new Thread(() -> {
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(10000);
+                        server.getCommandManager().executeWithPrefix(server.getCommandSource(), "tellraw " + playerName + " [\"" + serverConfig.nagMessage + "\"]");
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                }).start();
             }
         } else {
             loginSynchronizer.waitFor(server.submit(() -> handleHandshake(connection, playerName, buf, sender)));
@@ -71,7 +81,7 @@ public class HandshakeS2CPacket {
         }
 
         if (Modpack.isGenerating()) {
-            Text reason = VersionedText.literal("AutoModapck is generating modpack. Please wait a moment and try again.");
+            Text reason = VersionedText.literal("AutoModpack is generating modpack. Please wait a moment and try again.");
             connection.send(new LoginDisconnectS2CPacket(reason));
             connection.disconnect(reason);
             return;
